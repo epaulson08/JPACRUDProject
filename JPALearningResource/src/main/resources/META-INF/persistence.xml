@@ -12,6 +12,12 @@
     <class>com.skilldistillery.learningresource.entities.Textbook</class>
     <!-- End entities -->
 
+
+
+
+
+
+
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/learningresourcedb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=US/Mountain" />
       <property name="javax.persistence.jdbc.user" value="learninguser"/>
