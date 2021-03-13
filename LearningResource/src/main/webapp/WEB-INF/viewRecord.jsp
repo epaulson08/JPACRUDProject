@@ -22,7 +22,7 @@
 <td>${textbook.title}</td>
 <td>${textbook.subtitle}</td>
 <td>${textbook.author}</td>
-<td>${textbook.edition}</td><%-- TODO c:choose, when, otherwise to deal with null edition --%>
+<td>${textbook.edition}</td><%-- TODO c:choose, when, otherwise to deal with null edition, year, length --%>
 <td>${textbook.year}</td>
 <td>${textbook.length} pages</td>
 </tr>

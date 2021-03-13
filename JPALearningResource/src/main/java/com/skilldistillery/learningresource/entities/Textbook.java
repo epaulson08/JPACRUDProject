@@ -28,6 +28,17 @@ public class Textbook {
 		super();
 	}
 
+	public Textbook(String author, String title, String subtitle, Integer edition, Integer year,
+			Integer length) {
+		super();
+		this.author = author;
+		this.title = title;
+		this.subtitle = subtitle;
+		this.edition = edition;
+		this.year = year;
+		this.length = length;
+	}
+
 	public int getId() {
 		return id;
 	}

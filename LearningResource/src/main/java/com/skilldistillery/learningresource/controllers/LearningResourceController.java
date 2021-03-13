@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.learningresource.data.LearningResourceDAO;
+import com.skilldistillery.learningresource.entities.Textbook;
 
 @Controller
 public class LearningResourceController {
@@ -15,6 +16,7 @@ public class LearningResourceController {
 	@Autowired
 	private LearningResourceDAO dao;
 
+/////// NAVIGATION
 	@RequestMapping(path = { "/", "home.do" })
 	public String index(Model model) {
 		return "index";
@@ -24,7 +26,24 @@ public class LearningResourceController {
 	public String goToSearchIDPage() {
 		return "searchRecordByID";
 	}
+	
+	@RequestMapping(path = "createRecord.do", method = RequestMethod.GET)
+	public String createRecord() {
+		return "createRecord";
+	}
+	
+//////// CREATE
 
+	@RequestMapping(path = "recordCreated.do", method = RequestMethod.POST)
+	public ModelAndView recordCreated(String author, String title, String subtitle, Integer edition, Integer year, Integer length ) {
+		ModelAndView mv = new ModelAndView();
+		Textbook textbook = new Textbook(author, title, subtitle, edition, year, length);
+		mv.addObject("textbook", dao.create(textbook));
+		mv.setViewName("recordCreated");
+		return mv;		
+	}
+
+//////// READ
 	@RequestMapping(path = "searchRecordByID.do", method = RequestMethod.GET)
 	public ModelAndView searchRecordByID(int id) {
 		ModelAndView mv = new ModelAndView();
@@ -32,19 +51,15 @@ public class LearningResourceController {
 		mv.setViewName("viewRecord");
 		return mv;
 	}
+	
+	// TODO search by keyword
+	// TODO search by title
+	// TODO search by author
+	
+//////// UPDATE
+	// TODO update
+	
+//////// DELETE
+	// TODO delete
 
-	@RequestMapping(path = "createRecord.do", method = RequestMethod.GET)
-	public ModelAndView createRecord() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("createRecord");
-		return mv;
-	}
-
-	@RequestMapping(path = "recordCreated.do", method = RequestMethod.POST)
-	public ModelAndView recordCreated() {
-		ModelAndView mv = new ModelAndView();
-		// TODO
-		mv.setViewName("recordCreated");
-		return mv;
-	}
 }

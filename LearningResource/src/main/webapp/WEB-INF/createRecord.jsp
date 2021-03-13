@@ -13,9 +13,12 @@
 	<h2>Create a Record:</h2>
 	<%-- TODO: Could dynamically bind type of record (textbook, journal, etc.) --%>
 	<form action="recordCreated.do" method="POST">
-		<br />Title: <input type="text" name="title" />
 		<br />Author: <input type="text" name="author" />
-		<br /> <%-- TODO: Add other fields --%>
+		<br />Title: <input type="text" name="title" />
+		<br />Subtitle: <input type="text" name="subtitle" />
+		<br />Edition: <input type="text" name="edition" />
+		<br />Year: <input type="text" name="year" />
+		<br />Length: <input type="text" name="length" />		
 		<br /><button type="submit">Submit</button>
 	</form>
 

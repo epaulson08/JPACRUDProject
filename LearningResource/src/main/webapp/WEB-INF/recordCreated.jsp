@@ -10,7 +10,7 @@
 </head>
 <body>
 <h3>You have successfully created: </h3>
-${record.title}
+${textbook.title} <%-- TODO I have hardcoded "textbook" but this could be generalized to "record" if reusing this page for different types of record creation --%>
 
 </body>
 </html>
