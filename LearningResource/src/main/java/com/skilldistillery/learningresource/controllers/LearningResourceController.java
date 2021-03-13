@@ -21,12 +21,12 @@ public class LearningResourceController {
 	public String index(Model model) {
 		return "index";
 	}
-	
+
 	@RequestMapping(path = "gotoSearchRecordByID.do")
 	public String goToSearchID() {
 		return "searchRecordByID";
 	}
-	
+
 	@RequestMapping(path = "gotoCreateRecord.do", method = RequestMethod.GET)
 	public String gotoCreateRecord() {
 		return "createRecord";
@@ -40,16 +40,17 @@ public class LearningResourceController {
 		mv.setViewName("updateRecord");
 		return mv;
 	}
-	
+
 //////// CREATE
 
 	@RequestMapping(path = "recordCreated.do", method = RequestMethod.POST)
-	public ModelAndView recordCreated(String author, String title, String subtitle, Integer edition, Integer year, Integer length ) {
+	public ModelAndView recordCreated(String author, String title, String subtitle, Integer edition, Integer year,
+			Integer length) {
 		ModelAndView mv = new ModelAndView();
 		Textbook textbook = new Textbook(author, title, subtitle, edition, year, length);
 		mv.addObject("textbook", dao.create(textbook));
 		mv.setViewName("recordCreated");
-		return mv;		
+		return mv;
 	}
 
 //////// READ
@@ -60,26 +61,35 @@ public class LearningResourceController {
 		mv.setViewName("viewRecord");
 		return mv;
 	}
-	
+
 	// TODO search by keyword
 	// TODO search by title
 	// TODO search by author
-	
+
 //////// UPDATE
 	@RequestMapping(path = "recordUpdated.do", method = RequestMethod.POST)
-	public ModelAndView recordUpdated(int id, String author, String title, String subtitle, Integer edition, Integer year, Integer length ) {
+	public ModelAndView recordUpdated(int id, String author, String title, String subtitle, String edition, String year,
+			String length) {
 		ModelAndView mv = new ModelAndView();
-		Textbook textbook = new Textbook(author, title, subtitle, edition, year, length);
-		// TODO BUG Currently this updates the textbook but if the user did not type anything in a field it deletes that field
-		// TODO BUG Also the update page does not display the old title.
-		mv.addObject("textbook", dao.update(id, textbook));
-		mv.setViewName("recordUpdated");
-		return mv;		
+
+		try {
+			Integer checkedEdition = Integer.parseInt(edition);
+			Integer checkedYear = Integer.parseInt(year);
+			Integer checkedLength = Integer.parseInt(length);
+
+			Textbook textbook = new Textbook(author, title, subtitle, checkedEdition, checkedYear, checkedLength);
+			mv.addObject("textbook", dao.update(id, textbook));
+
+			mv.setViewName("recordUpdated");
+			return mv;
+
+		} catch (NumberFormatException nfe) {
+			mv.setViewName("inputError");
+			return mv;
+		}
 	}
 
-	// TODO implement
-	
-//////// DELETE
+	//////// DELETE
 	@RequestMapping(path = "recordDeleted.do", method = RequestMethod.POST)
 	public ModelAndView recordDeleted(int id) {
 		ModelAndView mv = new ModelAndView();
@@ -89,7 +99,5 @@ public class LearningResourceController {
 		mv.setViewName("recordDeleted");
 		return mv;
 	}
-	
-	
 
 }
