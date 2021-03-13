@@ -12,7 +12,9 @@
 
 <h1>Learning Resource Tracker</h1>
 
-<a href="createRecord.do">Create Record</a>
+<h3>Textbooks</h3>
+<a href="enterSearchRecordByID.do">Search for Record By ID</a>
+<br /><a href="createRecord.do">Create Record</a>
 
 </body>
 </html>

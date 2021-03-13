@@ -1,6 +1,7 @@
 package com.skilldistillery.learningresource.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -31,7 +32,7 @@ class TextbookTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		t = em.find(Textbook.class, 1);
+		t = em.find(Textbook.class, 2);
 	}
 
 	@AfterEach
@@ -43,8 +44,15 @@ class TextbookTest {
 	@Test
 	void test_Textbook_entity_mapping() {
 		assertNotNull(t);
-		assertEquals("Great Book", t.getTitle());
-		
+		assertEquals(2, t.getId());
+		assertEquals("Herbert Schildt", t.getAuthor());
+		assertEquals("Java A Beginner's Guide", t.getTitle());
+		assertEquals("Create, Compile, and Run Java Programs Today", t.getSubtitle());
+		assertEquals(8, t.getEdition());
+		assertEquals(2019, t.getYear());
+		assertEquals(684, t.getLength());
 	}
+	
+	
 
 }

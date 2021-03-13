@@ -16,6 +16,14 @@ public class Textbook {
 	
 	private String title;
 
+	private String subtitle;
+	
+	private Integer edition;
+	
+	private Integer year;
+	
+	private Integer length;
+	
 	public Textbook() {
 		super();
 	}
@@ -42,6 +50,38 @@ public class Textbook {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getSubtitle() {
+		return subtitle;
+	}
+
+	public void setSubtitle(String subtitle) {
+		this.subtitle = subtitle;
+	}
+
+	public Integer getEdition() {
+		return edition;
+	}
+
+	public void setEdition(Integer edition) {
+		this.edition = edition;
+	}
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public Integer getLength() {
+		return length;
+	}
+
+	public void setLength(Integer length) {
+		this.length = length;
 	}
 
 	@Override
