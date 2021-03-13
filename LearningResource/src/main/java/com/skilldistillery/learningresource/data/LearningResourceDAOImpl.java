@@ -71,12 +71,13 @@ public class LearningResourceDAOImpl implements LearningResourceDAO {
 	
 //////// DESTROY
 	@Override
-	public boolean delete(int id) {
+	public Textbook delete(int id) {
 		Textbook garbageTextbook = em.find(Textbook.class, id);
 
 		em.remove(garbageTextbook);
 		boolean textbookWasDeleted = !em.contains(garbageTextbook);
-	
-		return textbookWasDeleted;
+		
+		if (!textbookWasDeleted) return null;
+		else return garbageTextbook;
 	}
 }

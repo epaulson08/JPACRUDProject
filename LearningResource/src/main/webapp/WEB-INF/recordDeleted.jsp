@@ -7,7 +7,7 @@
 <title>Record Deleted</title>
 </head>
 <body>
-<strong>${deletedTitle}</strong> was successfully deleted.
+<strong>${textbook.title}</strong> was successfully deleted.
 </body>
 
 <form action="home.do"><button type="submit">Return Home</button></form>

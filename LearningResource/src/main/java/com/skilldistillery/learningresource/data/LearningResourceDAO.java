@@ -17,7 +17,7 @@ public interface LearningResourceDAO {
 	public Textbook update(int id, Textbook textbook);
 	
 	// DELETE	
-	public boolean delete(int id);
+	public Textbook delete(int id);
 	
 	
 		

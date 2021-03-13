@@ -80,6 +80,16 @@ public class LearningResourceController {
 	// TODO implement
 	
 //////// DELETE
-	// TODO delete
+	@RequestMapping(path = "recordDeleted.do", method = RequestMethod.POST)
+	public ModelAndView recordDeleted(int id) {
+		ModelAndView mv = new ModelAndView();
+		Textbook textbook = dao.findById(id);
+		dao.delete(id);
+		mv.addObject(textbook);
+		mv.setViewName("recordDeleted");
+		return mv;
+	}
+	
+	
 
 }

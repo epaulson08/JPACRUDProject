@@ -27,7 +27,8 @@
 			<tr>
 			<td><form action="gotoUpdateRecord.do" method="GET"><button type="submit">Update</button>
 			<input type="hidden" name="id" value="${textbook.id}" /></form>
-			<form action="deleteRecord.do" method="POST"><button type="submit">Delete</button></form>
+			<form action="recordDeleted.do" method="POST"><button type="submit">Delete</button>
+			<input type="hidden" name="id" value="${textbook.id}" /></form>
 			</td>
 			<td><form></form></td>
 				<td>${textbook.id}</td>
