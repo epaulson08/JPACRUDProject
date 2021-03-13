@@ -47,11 +47,22 @@ public class LearningResourceDAOImpl implements LearningResourceDAO {
 	public Textbook update(int id, Textbook textbook) {
 		Textbook dbTextbook = em.find(Textbook.class, id);
 
+		if (textbook.getAuthor() != "" && textbook.getAuthor() != null)
 		dbTextbook.setAuthor(textbook.getAuthor());
+		
+		if (textbook.getTitle() != "" && textbook.getTitle() !=null)
 		dbTextbook.setTitle(textbook.getTitle());
+		
+		if (textbook.getSubtitle() != "" && textbook.getSubtitle() !=null)
 		dbTextbook.setSubtitle(textbook.getSubtitle());
+		
+		if (textbook.getEdition() != null)
 		dbTextbook.setEdition(textbook.getEdition());
+
+		if (textbook.getYear() != null)
 		dbTextbook.setYear(textbook.getYear());
+		
+		if (textbook.getLength() != null)
 		dbTextbook.setLength(textbook.getLength());
 
 		return dbTextbook;
