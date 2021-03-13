@@ -22,14 +22,23 @@ public class LearningResourceController {
 		return "index";
 	}
 	
-	@RequestMapping(path = "enterSearchRecordByID.do")
-	public String goToSearchIDPage() {
+	@RequestMapping(path = "gotoSearchRecordByID.do")
+	public String goToSearchID() {
 		return "searchRecordByID";
 	}
 	
-	@RequestMapping(path = "createRecord.do", method = RequestMethod.GET)
-	public String createRecord() {
+	@RequestMapping(path = "gotoCreateRecord.do", method = RequestMethod.GET)
+	public String gotoCreateRecord() {
 		return "createRecord";
+	}
+
+	@RequestMapping(path = "gotoUpdateRecord.do", method = RequestMethod.GET)
+	public ModelAndView gotoUpdateRecord(int id) {
+		ModelAndView mv = new ModelAndView();
+		Textbook textbook = dao.findById(id);
+		mv.addObject("textbook", textbook);
+		mv.setViewName("updateRecord");
+		return mv;
 	}
 	
 //////// CREATE
@@ -57,7 +66,18 @@ public class LearningResourceController {
 	// TODO search by author
 	
 //////// UPDATE
-	// TODO update
+	@RequestMapping(path = "recordUpdated.do", method = RequestMethod.POST)
+	public ModelAndView recordUpdated(int id, String author, String title, String subtitle, Integer edition, Integer year, Integer length ) {
+		ModelAndView mv = new ModelAndView();
+		Textbook textbook = new Textbook(author, title, subtitle, edition, year, length);
+		// TODO BUG Currently this updates the textbook but if the user did not type anything in a field it deletes that field
+		// TODO BUG Also the update page does not display the old title.
+		mv.addObject("textbook", dao.update(id, textbook));
+		mv.setViewName("recordUpdated");
+		return mv;		
+	}
+
+	// TODO implement
 	
 //////// DELETE
 	// TODO delete

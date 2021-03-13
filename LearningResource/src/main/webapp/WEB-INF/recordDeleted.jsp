@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Delete Record</title>
+<title>Record Deleted</title>
 </head>
 <body>
-
+<strong>${deletedTitle}</strong> was successfully deleted.
 </body>
+
+<form action="home.do"><button type="submit">Return Home</button></form>
+
 </html>

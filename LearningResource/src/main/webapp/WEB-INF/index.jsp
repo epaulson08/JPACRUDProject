@@ -13,8 +13,8 @@
 <h1>Learning Resource Tracker</h1>
 
 <h3>Textbooks</h3>
-<a href="enterSearchRecordByID.do">Search for Record By ID</a>
-<br /><a href="createRecord.do">Create Record</a>
+<a href="gotoSearchRecordByID.do">Search for Record By ID</a>
+<br /><a href="gotoCreateRecord.do">Create Record</a>
 
 </body>
 </html>

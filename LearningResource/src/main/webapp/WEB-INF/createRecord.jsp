@@ -22,6 +22,7 @@
 		<br /><button type="submit">Submit</button>
 	</form>
 
+<form action="home.do"><button type="submit">Return Home</button></form>
 
 </body>
 </html>

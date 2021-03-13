@@ -10,7 +10,29 @@
 </head>
 <body>
 <h3>You have successfully created: </h3>
-${textbook.title} <%-- TODO I have hardcoded "textbook" but this could be generalized to "record" if reusing this page for different types of record creation --%>
 
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Title</th>
+			<th>Subtitle</th>
+			<th>Author</th>
+			<th>Edition</th>
+			<th>Year</th>
+			<th>Length</th>
+		</tr>
+			<tr>
+				<%-- TODO c:choose, when, otherwise to deal with null subtitle, edition, year, length --%>
+				<td>${textbook.id}</td>
+				<td>${textbook.title}</td>
+				<td>${textbook.subtitle}</td>
+				<td>${textbook.author}</td>
+				<td>${textbook.edition}</td>
+				<td>${textbook.year}</td>
+				<td>${textbook.length}pages</td>
+			</tr>
+	</table>
+	
+	<form action="home.do"><button type="submit">Return Home</button></form>
 </body>
 </html>
