@@ -6,13 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Learning Resource Tracker</title>
+<title>Record Created</title>
 </head>
 <body>
-
-<h1>Learning Resource Tracker</h1>
-
-<a href="createRecord.do">Create Record</a>
+<h3>You have successfully created: </h3>
+${record.title}
 
 </body>
 </html>
