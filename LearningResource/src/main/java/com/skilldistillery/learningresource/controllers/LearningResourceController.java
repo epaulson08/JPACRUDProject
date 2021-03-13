@@ -44,13 +44,24 @@ public class LearningResourceController {
 //////// CREATE
 
 	@RequestMapping(path = "recordCreated.do", method = RequestMethod.POST)
-	public ModelAndView recordCreated(String author, String title, String subtitle, Integer edition, Integer year,
-			Integer length) {
+	public ModelAndView recordCreated(String author, String title, String subtitle, String edition, String year,
+			String length) {
 		ModelAndView mv = new ModelAndView();
-		Textbook textbook = new Textbook(author, title, subtitle, edition, year, length);
-		mv.addObject("textbook", dao.create(textbook));
-		mv.setViewName("recordCreated");
-		return mv;
+
+		try {
+			Integer checkedEdition = Integer.parseInt(edition);
+			Integer checkedYear = Integer.parseInt(year);
+			Integer checkedLength = Integer.parseInt(length);
+
+			Textbook textbook = new Textbook(author, title, subtitle, checkedEdition, checkedYear, checkedLength);
+			mv.addObject("textbook", dao.create(textbook));
+			mv.setViewName("recordCreated");
+			return mv;
+
+		} catch (Exception e) {
+			mv.setViewName("inputError");
+			return mv;
+		}
 	}
 
 //////// READ
@@ -83,7 +94,7 @@ public class LearningResourceController {
 			mv.setViewName("recordUpdated");
 			return mv;
 
-		} catch (NumberFormatException nfe) {
+		} catch (Exception e) {
 			mv.setViewName("inputError");
 			return mv;
 		}
