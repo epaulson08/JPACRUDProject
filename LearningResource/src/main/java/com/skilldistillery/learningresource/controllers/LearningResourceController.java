@@ -47,11 +47,11 @@ public class LearningResourceController {
 	public ModelAndView recordCreated(String author, String title, String subtitle, String edition, String year,
 			String length) {
 		ModelAndView mv = new ModelAndView();
-
+		Integer checkedEdition = null, checkedYear = null, checkedLength = null;
 		try {
-			Integer checkedEdition = Integer.parseInt(edition);
-			Integer checkedYear = Integer.parseInt(year);
-			Integer checkedLength = Integer.parseInt(length);
+			if (edition != "") checkedEdition = Integer.parseInt(edition);
+			if (year != "") checkedYear = Integer.parseInt(year);
+			if (length != "") checkedLength = Integer.parseInt(length);
 
 			Textbook textbook = new Textbook(author, title, subtitle, checkedEdition, checkedYear, checkedLength);
 			mv.addObject("textbook", dao.create(textbook));
