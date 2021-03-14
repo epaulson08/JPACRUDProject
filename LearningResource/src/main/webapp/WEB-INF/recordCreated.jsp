@@ -12,6 +12,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="styles.css">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
@@ -26,19 +27,19 @@
 <title>Record Created</title>
 </head>
 <body>
-<div class="container">
-<h3>You have successfully created: </h3>
+	<div class="container">
+		<h2>You have successfully created:</h2>
 
-	<table>
-		<tr>
-			<th>ID</th>
-			<th>Title</th>
-			<th>Subtitle</th>
-			<th>Author</th>
-			<th>Edition</th>
-			<th>Year</th>
-			<th>Length</th>
-		</tr>
+		<table>
+			<tr>
+				<th>ID</th>
+				<th>Title</th>
+				<th>Subtitle</th>
+				<th>Author</th>
+				<th>Edition</th>
+				<th>Year</th>
+				<th>Length</th>
+			</tr>
 			<tr>
 				<%-- TODO c:choose, when, otherwise to deal with null subtitle, edition, year, length --%>
 				<td>${textbook.id}</td>
@@ -49,9 +50,11 @@
 				<td>${textbook.year}</td>
 				<td>${textbook.length}pages</td>
 			</tr>
-	</table>
-	
-	<form action="home.do"><button type="submit" class="btn btn-primary">Return Home</button></form>
-</div>
+		</table>
+
+		<form action="home.do">
+			<button type="submit" class="btn btn-secondary">Return Home</button>
+		</form>
+	</div>
 </body>
 </html>

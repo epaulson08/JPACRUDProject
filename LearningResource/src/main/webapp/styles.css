@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+body {
+	line-height: 1.5;
+}
+
+h1 {
+	color: navy;
+}
+
+h2 {
+	color: navy;
+}
+
+.indexHeader {
+	color: black !important;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited,
+	.btn-primary:focus {
+	background-color: navy;
+	border-color: navy;
+	margin-bottom: 5px;
+}
+
+.btn-secondary, .btn-secondary:hover, .btn-secondary:active,
+	.btn-secondary:visited, .btn-secondary:focus {
+	margin-bottom: 5px;
+}
+
+a {
+	color: #4B92DB;
+	text-decoration: underline;
+}
+
+
+tr:nth-child(odd) {
+	background-color: #f2f2f2;
+}
+
+th {
+	color: navy;
+	font-size: large;
+	text-align: left;
+	padding-right: 2rem;
+}
+
+td {
+	text-align: left;
+	padding-right: 2rem;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.buttonsColumn {
+	text-align: center;
+}

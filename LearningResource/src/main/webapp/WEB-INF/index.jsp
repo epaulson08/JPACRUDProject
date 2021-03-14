@@ -13,6 +13,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="styles.css">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
@@ -31,14 +32,18 @@
 		<h1>Learning Resource Tracker</h1>
 		<hr>
 		<div>
-				<form action="searchRecordByID.do">
-						<div class="form-group">
-							<h3> Look up record by ID: <input type="text" name="id" />
-							<button type="submit" class="btn btn-primary">Submit</button></h3>
-						</div>
+			<form action="searchRecordByID.do">
+				<div class="form-group">
+					<h3 class="indexHeader">
+						Look up record by ID: <input type="text" name="id" />
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</h3>
+				</div>
 
-					</form>
-				<h3><a href="gotoCreateRecord.do">Create Record</a></h3>
+			</form>
+			<h3 class="indexLink">
+				<a href="gotoCreateRecord.do">Create Record</a>
+			</h3>
 		</div>
 	</div>
 </body>
