@@ -17,7 +17,7 @@
 		<br />Subtitle: ${textbook.subtitle} <input type="text" name="subtitle" />
 		<br />Edition: ${textbook.edition} <input type="text" name="edition" />
 		<br />Year: ${textbook.year} <input type="text" name="year" />
-		<br />Length: ${textbook.year}<input type="text" name="length" />
+		<br />Length: ${textbook.length}<input type="text" name="length" />
 		<input type="hidden" name="oldTitle" value="${textbook.title}" />		
 		<br /><button type="submit">Submit</button>
 	</form>
