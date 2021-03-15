@@ -58,11 +58,12 @@
 							<td>${textbook.length}&nbsppages</td>
 							<td class="buttonsColumn"><form action="gotoUpdateRecord.do"
 									method="GET">
-									<input type="hidden" name="textbook" value="${textbook}" />
+									<input type="hidden" name="id" value="${textbook.id}" />
 									<button type="submit" class="btn btn-secondary btn-sm">Update</button>
 								</form>
-								<form action="deleteRecord.do" method="POST">
+								<form action="recordDeleted.do" method="POST">
 									<button type="submit" class="btn btn-secondary btn-sm">Delete</button>
+									<input type="hidden" name="id" value="${textbook.id}" />
 								</form></td>
 						</tr>
 					</c:forEach>
