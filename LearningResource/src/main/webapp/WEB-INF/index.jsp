@@ -33,6 +33,9 @@
 		<hr>
 		<div>
 			<h3 class="indexLink">
+				<a href="seeAll.do">See All Records</a>
+			</h3>
+			<h3 class="indexLink">
 				<a href="gotoCreateRecord.do">Create Record</a>
 			</h3>
 			<br />

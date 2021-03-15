@@ -13,6 +13,7 @@ public interface LearningResourceDAO {
 	Textbook findById(int id);
 	List<Textbook> findAll();
 	List<Textbook> findByTitle(String title);
+	List<Textbook> findByAuthor(String author);
 	
 	// UPDATE
 	public Textbook update(int id, Textbook textbook);

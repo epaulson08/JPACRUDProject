@@ -58,7 +58,7 @@
 					<td><input type="text" name="length" /></td>
 				</tr>
 			</table>
-			<button type="submit" class="btn btn-primary">Submit</button></td>
+			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 		<br />
 		<form action="home.do">

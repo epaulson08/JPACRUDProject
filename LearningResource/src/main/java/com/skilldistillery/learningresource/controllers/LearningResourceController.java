@@ -70,6 +70,15 @@ public class LearningResourceController {
 	}
 
 //////// READ
+	@RequestMapping(path = "seeAll.do", method = RequestMethod.GET)
+	public ModelAndView seeAll() {
+		ModelAndView mv = new ModelAndView();
+		List<Textbook> allTextbooks = dao.findAll();
+		mv.addObject("textbooks", allTextbooks);
+		mv.setViewName("viewRecords");
+		return mv;
+	}
+
 	@RequestMapping(path = "searchRecordByID.do", method = RequestMethod.GET)
 	public ModelAndView searchRecordByID(int id) {
 		ModelAndView mv = new ModelAndView();
@@ -90,8 +99,19 @@ public class LearningResourceController {
 		}
 		return mv;
 	}
-	// TODO search by title
-	// TODO search by author
+
+	@RequestMapping(path = "searchByAuthor.do", method = RequestMethod.GET)
+	public ModelAndView searchByAuthor(String author) {
+		ModelAndView mv = new ModelAndView();
+		List<Textbook> textbooks = dao.findByAuthor(author);
+		if (textbooks != null) {
+			mv.addObject("textbooks", textbooks);
+			mv.setViewName("viewRecords");
+		} else {
+			mv.setViewName("noneFound");
+		}
+		return mv;
+	}
 
 //////// UPDATE
 	@RequestMapping(path = "recordUpdated.do", method = RequestMethod.POST)
