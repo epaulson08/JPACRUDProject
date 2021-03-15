@@ -40,13 +40,13 @@ tr:nth-child(odd) {
 	background-color: #f2f2f2;
 }
 
-.doNotShadeRows > tr { }
 
 th {
 	color: navy;
 	font-size: large;
 	text-align: left;
 	padding-right: 2rem;
+	background-color: #f2f2f2;
 }
 
 td {
