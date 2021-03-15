@@ -16,7 +16,6 @@ public class LearningResourceDAOImpl implements LearningResourceDAO {
 
 	@PersistenceContext
 	private EntityManager em;
-	
 
 //////// CREATE
 	@Override
@@ -32,14 +31,23 @@ public class LearningResourceDAOImpl implements LearningResourceDAO {
 	public Textbook findById(int id) {
 		return em.find(Textbook.class, id);
 	}
-	
+
 	@Override
 	public List<Textbook> findAll() {
 		String queryFindAll = "SELECT t FROM Textbook t";
 		List<Textbook> allTextbooks = null;
-		
 		allTextbooks = em.createQuery(queryFindAll, Textbook.class).getResultList();
 		return allTextbooks;
+	}
+
+	@Override
+	public List<Textbook> findByTitle(String title) {
+		List<Textbook> textbookList = null;
+		title = "%" + title + "%";
+		
+		String queryFindByTitle = "SELECT t FROM Textbook t WHERE t.title LIKE :bindVar";
+		textbookList = em.createQuery(queryFindByTitle, Textbook.class).setParameter("bindVar", title).getResultList();
+		return textbookList;
 	}
 
 //////// UPDATE
@@ -48,27 +56,26 @@ public class LearningResourceDAOImpl implements LearningResourceDAO {
 		Textbook dbTextbook = em.find(Textbook.class, id);
 
 		if (textbook.getAuthor() != "" && textbook.getAuthor() != null)
-		dbTextbook.setAuthor(textbook.getAuthor());
-		
-		if (textbook.getTitle() != "" && textbook.getTitle() !=null)
-		dbTextbook.setTitle(textbook.getTitle());
-		
-		if (textbook.getSubtitle() != "" && textbook.getSubtitle() !=null)
-		dbTextbook.setSubtitle(textbook.getSubtitle());
-		
+			dbTextbook.setAuthor(textbook.getAuthor());
+
+		if (textbook.getTitle() != "" && textbook.getTitle() != null)
+			dbTextbook.setTitle(textbook.getTitle());
+
+		if (textbook.getSubtitle() != "" && textbook.getSubtitle() != null)
+			dbTextbook.setSubtitle(textbook.getSubtitle());
+
 		if (textbook.getEdition() != null)
-		dbTextbook.setEdition(textbook.getEdition());
+			dbTextbook.setEdition(textbook.getEdition());
 
 		if (textbook.getYear() != null)
-		dbTextbook.setYear(textbook.getYear());
-		
+			dbTextbook.setYear(textbook.getYear());
+
 		if (textbook.getLength() != null)
-		dbTextbook.setLength(textbook.getLength());
+			dbTextbook.setLength(textbook.getLength());
 
 		return dbTextbook;
 	}
 
-	
 //////// DESTROY
 	@Override
 	public Textbook delete(int id) {
@@ -76,8 +83,10 @@ public class LearningResourceDAOImpl implements LearningResourceDAO {
 
 		em.remove(garbageTextbook);
 		boolean textbookWasDeleted = !em.contains(garbageTextbook);
-		
-		if (!textbookWasDeleted) return null;
-		else return garbageTextbook;
+
+		if (!textbookWasDeleted)
+			return null;
+		else
+			return garbageTextbook;
 	}
 }

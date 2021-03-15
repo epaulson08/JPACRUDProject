@@ -1,5 +1,7 @@
 package com.skilldistillery.learningresource.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,9 +51,12 @@ public class LearningResourceController {
 		ModelAndView mv = new ModelAndView();
 		Integer checkedEdition = null, checkedYear = null, checkedLength = null;
 		try {
-			if (edition != "") checkedEdition = Integer.parseInt(edition);
-			if (year != "") checkedYear = Integer.parseInt(year);
-			if (length != "") checkedLength = Integer.parseInt(length);
+			if (edition != "")
+				checkedEdition = Integer.parseInt(edition);
+			if (year != "")
+				checkedYear = Integer.parseInt(year);
+			if (length != "")
+				checkedLength = Integer.parseInt(length);
 
 			Textbook textbook = new Textbook(author, title, subtitle, checkedEdition, checkedYear, checkedLength);
 			mv.addObject("textbook", dao.create(textbook));
@@ -73,7 +78,18 @@ public class LearningResourceController {
 		return mv;
 	}
 
-	// TODO search by keyword
+	@RequestMapping(path = "searchByTitle.do", method = RequestMethod.GET)
+	public ModelAndView searchByTitle(String title) {
+		ModelAndView mv = new ModelAndView();
+		List<Textbook> textbooks = dao.findByTitle(title);
+		if (textbooks != null) {
+			mv.addObject("textbooks", textbooks);
+			mv.setViewName("viewRecords");
+		} else {
+			mv.setViewName("noneFound");
+		}
+		return mv;
+	}
 	// TODO search by title
 	// TODO search by author
 
@@ -83,12 +99,15 @@ public class LearningResourceController {
 			String length) {
 		ModelAndView mv = new ModelAndView();
 		Integer checkedEdition = null, checkedYear = null, checkedLength = null;
-		
+
 		try {
-			
-			if (edition != "") checkedEdition = Integer.parseInt(edition);
-			if (year !="") checkedYear = Integer.parseInt(year);
-			if (length !="") checkedLength = Integer.parseInt(length);
+
+			if (edition != "")
+				checkedEdition = Integer.parseInt(edition);
+			if (year != "")
+				checkedYear = Integer.parseInt(year);
+			if (length != "")
+				checkedLength = Integer.parseInt(length);
 
 			Textbook textbook = new Textbook(author, title, subtitle, checkedEdition, checkedYear, checkedLength);
 			mv.addObject("textbook", dao.update(id, textbook));

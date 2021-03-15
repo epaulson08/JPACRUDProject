@@ -32,18 +32,34 @@
 		<h1>Learning Resource Tracker</h1>
 		<hr>
 		<div>
-			<form action="searchRecordByID.do">
-				<div class="form-group">
-					<h3 class="indexHeader">
-						Look up record by ID: <input type="text" name="id" />
-						<button type="submit" class="btn btn-primary">Submit</button>
-					</h3>
-				</div>
-
-			</form>
 			<h3 class="indexLink">
 				<a href="gotoCreateRecord.do">Create Record</a>
 			</h3>
+			<br />
+			<form action="searchByTitle.do" method="GET">
+				<div class="form-group">
+					<h3 class="indexHeader">Search by Title: 
+					<input type="text" name="title" />
+					<button type="submit" class="btn btn-primary">Submit</button>
+					</h3>
+				</div>
+			</form>
+			<form action="searchByAuthor.do" method="GET">
+				<div class="form-group">
+					<h3 class="indexHeader">
+						Search by Author: <input type="text" name="author" />
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</h3>
+				</div>
+			</form>
+			<form action="searchRecordByID.do" method="GET">
+				<div class="form-group">
+					<h3 class="indexHeader">
+						Find record by ID: <input type="text" name="id" />
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</h3>
+				</div>
+			</form>
 		</div>
 	</div>
 </body>

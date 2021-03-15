@@ -40,7 +40,7 @@
 	</c:when>
 
 			<c:otherwise>
-				<table>
+				<table class="shadeRows">
 					<tr>
 						<th>ID</th>
 						<th>Title</th>
@@ -59,7 +59,7 @@
 						<td>${textbook.edition}</td>
 						<%-- TODO c:choose, when, otherwise to deal with null edition, year, length --%>
 						<td>${textbook.year}</td>
-						<td>${textbook.length} pages</td>
+						<td>${textbook.length}&nbsppages</td>
 						<td class="buttonsColumn"><form action="gotoUpdateRecord.do" method="GET">
 								<button type="submit" class="btn btn-secondary btn-sm">Update</button>
 								<input type="hidden" name="id" value="${textbook.id}" />

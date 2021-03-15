@@ -12,6 +12,7 @@ public interface LearningResourceDAO {
 	// READ
 	Textbook findById(int id);
 	List<Textbook> findAll();
+	List<Textbook> findByTitle(String title);
 	
 	// UPDATE
 	public Textbook update(int id, Textbook textbook);

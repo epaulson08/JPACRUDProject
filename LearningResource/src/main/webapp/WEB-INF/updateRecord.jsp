@@ -31,7 +31,7 @@
 		<h2>Update a Record:</h2>
 		<%-- TODO: Could dynamically bind type of record (textbook, journal, etc.) --%>
 		<form action="recordUpdated.do" method="POST">
-			<table>
+			<table class="doNotShadeRows">
 				<tr>
 					<td>ID:</td>
 					<td>${textbook.id}</td>
