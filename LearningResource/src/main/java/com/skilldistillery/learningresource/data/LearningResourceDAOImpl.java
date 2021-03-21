@@ -50,22 +50,25 @@ public class LearningResourceDAOImpl implements LearningResourceDAO {
 		return textbookList;
 	}
 
-	@Override
-	public List<Textbook> findByAuthor(String author) {
-		List<Textbook> textbookList = null;
-		author = "%" + author + "%";
-		
-		String queryFindByAuthor = "SELECT t FROM Textbook t WHERE t.author LIKE :bindVar";
-		textbookList = em.createQuery(queryFindByAuthor, Textbook.class).setParameter("bindVar", author).getResultList();
-		return textbookList;
-	}
+//	Deprecated when changed `author` to `authors`:
+//	@Override
+//	public List<Textbook> findByAuthor(String author) {
+//		List<Textbook> textbookList = null;
+//		author = "%" + author + "%";
+//		
+//		String queryFindByAuthor = "SELECT t FROM Textbook t WHERE t.author LIKE :bindVar";
+//		textbookList = em.createQuery(queryFindByAuthor, Textbook.class).setParameter("bindVar", author).getResultList();
+//		return textbookList;
+//	}
+	
 //////// UPDATE
+	// TODO: update to reflect `author` vs. `authors`
 	@Override
 	public Textbook update(int id, Textbook textbook) {
 		Textbook dbTextbook = em.find(Textbook.class, id);
 
-		if (textbook.getAuthor() != "" && textbook.getAuthor() != null)
-			dbTextbook.setAuthor(textbook.getAuthor());
+		if (textbook.getAuthors().size() != 0 && textbook.getAuthors() != null)
+			dbTextbook.setAuthors(textbook.getAuthors());
 
 		if (textbook.getTitle() != "" && textbook.getTitle() != null)
 			dbTextbook.setTitle(textbook.getTitle());

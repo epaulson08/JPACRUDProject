@@ -29,41 +29,85 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Learning Resource Tracker</h1>
-		<hr>
-		<div>
-			<h3 class="indexLink">
-				<a href="seeAll.do">See All Records</a>
-			</h3>
-			<h3 class="indexLink">
-				<a href="gotoCreateRecord.do">Create Record</a>
-			</h3>
-			<br />
-			<form action="searchByTitle.do" method="GET">
-				<div class="form-group">
-					<h3 class="indexHeader">Search by Title: 
-					<input type="text" name="title" />
-					<button type="submit" class="btn btn-primary">Submit</button>
-					</h3>
-				</div>
-			</form>
-			<form action="searchByAuthor.do" method="GET">
-				<div class="form-group">
-					<h3 class="indexHeader">
-						Search by Author: <input type="text" name="author" />
-						<button type="submit" class="btn btn-primary">Submit</button>
-					</h3>
-				</div>
-			</form>
-			<form action="searchRecordByID.do" method="GET">
-				<div class="form-group">
-					<h3 class="indexHeader">
-						Find record by ID: <input type="text" name="id" />
-						<button type="submit" class="btn btn-primary">Submit</button>
-					</h3>
-				</div>
-			</form>
-		</div>
+		<nav class="navbar-expand-md navbar-light bg-light">
+			<button type="button" class="navbar-toggler" data-toggle="collapse"
+				data-target="#navbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbar">
+				<ul class="navbar-nav nav">
+					<li class="nav-item"><a class="nav-link" href="home.do">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="seeAll.do">List
+							All Records</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="goToCreateRecord.do">Create Record</a></li>
+					<%-- TODO: pages for search by ID and keyword --%>
+				</ul>
+			</div>
+		</nav>
 	</div>
+
+	<section>
+		<div class="container">
+			<h1>LearnDB</h1>
+			<hr>
+			<div>
+				<h3 class="indexLink">
+					<a href="seeAll.do">See All Records</a>
+				</h3>
+				<h3 class="indexLink">
+					<a href="gotoCreateRecord.do">Create Record</a>
+				</h3>
+				<br />
+				<form action="searchByTitle.do" method="GET">
+					<div class="form-row">
+						<div class="col">
+							<h3 class="indexHeader">
+								<label for="searchByTitle">Search by Title:</label>
+							</h3>
+						</div>
+						<div class="col">
+							<input type="text" name="title" id="searchByTitle"
+								class="form-control" />
+						</div>
+						<div class="col">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+				<form action="searchByAuthor.do" method="GET">
+					<div class="form-row">
+						<div class="col">
+							<h3 class="indexHeader">
+								<label for="searchByAuthor">Search By Author:</label>
+							</h3>
+						</div>
+						<div class="col">
+							<input type="text" name="author" id="searchByAuthor"
+								class="form-control" />
+						</div>
+						<div class="col">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+				<form action="searchRecordByID.do" method="GET">
+					<div class="form-row">
+						<div class="col">
+							<h3 class="indexHeader">
+								<label for="searchByID">Find record by ID:</label>
+							</h3>
+						</div>
+						<div class="col">
+							<input type="text" name="id" class="form-control" id="searchByID" />
+						</div>
+						<div class="col">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
 </body>
 </html>

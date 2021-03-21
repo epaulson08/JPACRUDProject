@@ -12,16 +12,24 @@ h2 {
 	color: navy;
 }
 
+h3 {
+	color: navy;
+}
+
+/* 
 .indexHeader {
 	color: black !important;
 }
+*/
+
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited,
 	.btn-primary:focus {
 	background-color: navy;
 	border-color: navy;
-	margin-bottom: 5px;
-	margin-top: 5px;
+	vertical-align: baseline;
+	/* margin-bottom: 5px;
+	margin-top: 5px; */
 }
 
 .btn-secondary, .btn-secondary:hover, .btn-secondary:active,
@@ -34,7 +42,6 @@ a {
 	color: #4B92DB;
 	text-decoration: underline;
 }
-
 
 tr:nth-child(odd) {
 	background-color: #f2f2f2;

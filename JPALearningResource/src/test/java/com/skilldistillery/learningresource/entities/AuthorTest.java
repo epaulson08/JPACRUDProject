@@ -3,6 +3,7 @@ package com.skilldistillery.learningresource.entities;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,11 +15,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class TextbookTest {
-
+public class AuthorTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Textbook textbook;
+	private Author author;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,41 +33,33 @@ class TextbookTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		textbook = em.find(Textbook.class, 3);
+		author = em.find(Author.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		textbook = null;
+		author = null;
 	}
 
 	@Test
-	void test_Textbook_entity_mapping() {
-		assertNotNull(textbook);
-		assertEquals(3, textbook.getId());
-		assertEquals("Java A Beginners Guide", textbook.getTitle());
-		assertEquals("Create, Compile, and Run Java Programs Today", textbook.getSubtitle());
-		assertEquals(8, textbook.getEdition());
-		assertEquals(2019, textbook.getYear());
-		assertEquals(684, textbook.getLength());
+	void test_Author_entity_mapping() {
 		/*
-		 * mysql> SELECT * FROM textbook WHERE id = 3;
-+----+-----------------+------------------------+----------------------------------------------+---------+------+--------+
-| id | author          | title                  | subtitle                                     | edition | year | length |
-+----+-----------------+------------------------+----------------------------------------------+---------+------+--------+
-|  3 | Herbert Schildt | Java A Beginners Guide | Create, Compile, and Run Java Programs Today |       8 | 2019 |    684 |
-+----+-----------------+------------------------+----------------------------------------------+---------+------+--------+
+		 * mysql> SELECT * FROM author WHERE id = 1;
++----+------------+-------------+-----------+--------+
+| id | first_name | middle_name | last_name | suffix |
++----+------------+-------------+-----------+--------+
+|  1 | Herbert    | NULL        | Schildt   | NULL   |
++----+------------+-------------+-----------+--------+
 1 row in set (0.00 sec)
 		 */
+		assertNotNull(author);
+		assertEquals("Herbert", author.getFirstName());
+		assertEquals("Schildt", author.getLastName());
 	}
-
+	
 	@Test
-	void test_Textbook_to_Author_entity_mapping() {
-		assertNotNull(textbook);
-		assertNotNull(textbook.getAuthors());
-		assertTrue(textbook.getAuthors().size() > 0);
-		
+	void test_Author_to_Textbook_entity_mapping() {
 		/*
 		 * mysql> SELECT * FROM author JOIN author_textbook ON author.id = author_textbook.author_id JOIN textbook ON textbook.id = author_textbook.textbook_id WHERE textbook.id = 3;
 +----+------------+-------------+-----------+--------+-----------+-------------+----+-----------------+------------------------+----------------------------------------------+---------+------+--------+
@@ -76,7 +68,12 @@ class TextbookTest {
 |  1 | Herbert    | NULL        | Schildt   | NULL   |         1 |           3 |  3 | Herbert Schildt | Java A Beginners Guide | Create, Compile, and Run Java Programs Today |       8 | 2019 |    684 |
 +----+------------+-------------+-----------+--------+-----------+-------------+----+-----------------+------------------------+----------------------------------------------+---------+------+--------+
 1 row in set (0.00 sec)
+
+
 		 */
+		assertNotNull(author);
+		assertNotNull(author.getTextbooks());
+		assertTrue(author.getTextbooks().size() > 0);
 	}
 
 }

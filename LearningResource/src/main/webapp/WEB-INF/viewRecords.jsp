@@ -40,6 +40,7 @@
 						<th>ID:</th>
 						<th>Title:</th>
 						<th>Subtitle:</th>
+						<%-- TODO: BROKEN WHEN CHANGED `author` to `authors`: --%>
 						<th>Author</th>
 						<th>Edition</th>
 						<th>Year</th>

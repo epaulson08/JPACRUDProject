@@ -1,37 +1,46 @@
 package com.skilldistillery.learningresource.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Textbook {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	private String author;
-	
+
+//	DEPRECATED:
+	private String author = "  ";
+
+	@ManyToMany(mappedBy = "textbooks")
+	private List<Author> authors;
+
 	private String title;
 
 	private String subtitle;
-	
+
 	private Integer edition;
-	
+
 	private Integer year;
-	
+
 	private Integer length;
-	
+
+	// Constructors:
 	public Textbook() {
 		super();
 	}
 
-	public Textbook(String author, String title, String subtitle, Integer edition, Integer year,
+	public Textbook(List<Author> authors, String title, String subtitle, Integer edition, Integer year,
 			Integer length) {
 		super();
-		this.author = author;
+		this.authors = authors;
 		this.title = title;
 		this.subtitle = subtitle;
 		this.edition = edition;
@@ -39,6 +48,18 @@ public class Textbook {
 		this.length = length;
 	}
 
+//	Deprecated when `author` changed to `authors`:
+//	public Textbook(String author, String title, String subtitle, Integer edition, Integer year, Integer length) {
+//		super();
+//		this.author = author;
+//		this.title = title;
+//		this.subtitle = subtitle;
+//		this.edition = edition;
+//		this.year = year;
+//		this.length = length;
+//	}
+
+	// Getters and setters:
 	public int getId() {
 		return id;
 	}
@@ -47,6 +68,7 @@ public class Textbook {
 		this.id = id;
 	}
 
+//	Deprecated:
 	public String getAuthor() {
 		return author;
 	}
@@ -95,12 +117,57 @@ public class Textbook {
 		this.length = length;
 	}
 
-	@Override
-	public String toString() {
-		return "Textbook [id=" + id + ", author=" + author + ", title=" + title + "]";
+	public List<Author> getAuthors() {
+		return authors;
 	}
 
-	
-	
+	public void setAuthors(List<Author> authors) {
+		this.authors = authors;
+	}
+
+	public void addAuthor(Author author) {
+		if (author == null)
+			authors = new ArrayList<>();
+
+		if (!authors.contains(author)) {
+			authors.add(author);
+			author.addTextbook(this);
+		}
+	}
+
+	public void removeAuthor(Author author) {
+		if (authors != null && authors.contains(author)) {
+			authors.remove(author);
+			author.removeTextbook(this);
+		}
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Textbook other = (Textbook) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Textbook [id=" + id + ", title=" + title + ", subtitle=" + subtitle + ", edition=" + edition + ", year="
+				+ year + ", length=" + length + "]";
+	}
 
 }
