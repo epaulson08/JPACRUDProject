@@ -2,12 +2,14 @@ package com.skilldistillery.learningresource.data;
 
 import java.util.List;
 
+import com.skilldistillery.learningresource.entities.Author;
 import com.skilldistillery.learningresource.entities.Textbook;
 
 public interface LearningResourceDAO {
 
 	// CREATE
-	public Textbook create(Textbook textbook);
+	public Textbook createTextbook(Textbook textbook);
+	public Author createAuthor(Author author);
 
 	// READ
 	Textbook findById(int id);
@@ -18,7 +20,8 @@ public interface LearningResourceDAO {
 	//	List<Textbook> findByAuthor(String author);
 	
 	// UPDATE
-	public Textbook update(int id, Textbook textbook);
+	public Textbook updateTextbook(int id, Textbook textbook);
+	public void addAuthorToTextbook(int textbookId, Author author);
 	
 	// DELETE	
 	public Textbook delete(int id);

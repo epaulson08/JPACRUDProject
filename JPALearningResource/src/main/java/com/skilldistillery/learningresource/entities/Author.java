@@ -106,7 +106,7 @@ public class Author {
 	}
 
 	public void addTextbook(Textbook textbook) {
-		if (textbook == null)
+		if (textbooks == null)
 			textbooks = new ArrayList<>();
 
 		if (!textbooks.contains(textbook)) {

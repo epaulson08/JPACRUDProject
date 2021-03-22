@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.learningresource.entities.Author;
 import com.skilldistillery.learningresource.entities.Textbook;
 
 @Transactional
@@ -19,11 +20,19 @@ public class LearningResourceDAOImpl implements LearningResourceDAO {
 
 //////// CREATE
 	@Override
-	public Textbook create(Textbook textbook) {
+	public Textbook createTextbook(Textbook textbook) {
 
 		em.persist(textbook);
 
 		return textbook;
+	}
+
+	@Override
+	public Author createAuthor(Author author) {
+		
+		em.persist(author);
+		
+		return author;
 	}
 
 //////// READ
@@ -64,7 +73,7 @@ public class LearningResourceDAOImpl implements LearningResourceDAO {
 //////// UPDATE
 	// TODO: update to reflect `author` vs. `authors`
 	@Override
-	public Textbook update(int id, Textbook textbook) {
+	public Textbook updateTextbook(int id, Textbook textbook) {
 		Textbook dbTextbook = em.find(Textbook.class, id);
 
 		if (textbook.getAuthors().size() != 0 && textbook.getAuthors() != null)
@@ -86,6 +95,11 @@ public class LearningResourceDAOImpl implements LearningResourceDAO {
 			dbTextbook.setLength(textbook.getLength());
 
 		return dbTextbook;
+	}
+	
+	public void addAuthorToTextbook(int textbookId, Author author) {
+		Textbook dbTextbook = em.find(Textbook.class, textbookId);
+		dbTextbook.addAuthor(author);		
 	}
 
 //////// DESTROY

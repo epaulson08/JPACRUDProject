@@ -17,7 +17,7 @@ public class Textbook {
 	private int id;
 
 //	DEPRECATED:
-	private String author = "  ";
+//	private String author = "  ";
 
 	@ManyToMany(mappedBy = "textbooks")
 	private List<Author> authors;
@@ -47,6 +47,17 @@ public class Textbook {
 		this.year = year;
 		this.length = length;
 	}
+	
+	public Textbook(String title, String subtitle, Integer edition, Integer year, Integer length) {
+		super();
+		this.title = title;
+		this.subtitle = subtitle;
+		this.edition = edition;
+		this.year = year;
+		this.length = length;
+	}
+
+
 
 //	Deprecated when `author` changed to `authors`:
 //	public Textbook(String author, String title, String subtitle, Integer edition, Integer year, Integer length) {
@@ -69,13 +80,13 @@ public class Textbook {
 	}
 
 //	Deprecated:
-	public String getAuthor() {
-		return author;
-	}
+//	public String getAuthor() {
+//		return author;
+//	}
 
-	public void setAuthor(String author) {
-		this.author = author;
-	}
+//	public void setAuthor(String author) {
+//		this.author = author;
+//	}
 
 	public String getTitle() {
 		return title;
@@ -126,7 +137,7 @@ public class Textbook {
 	}
 
 	public void addAuthor(Author author) {
-		if (author == null)
+		if (authors == null)
 			authors = new ArrayList<>();
 
 		if (!authors.contains(author)) {

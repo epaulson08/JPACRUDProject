@@ -45,7 +45,7 @@
 						<th>ID</th>
 						<th>Title</th>
 						<th>Subtitle</th>
-						<th>Author</th>
+						<th>Author(s)</th>
 						<th>Edition</th>
 						<th>Year</th>
 						<th>Length</th>
@@ -55,12 +55,26 @@
 						<td>${textbook.id}</td>
 						<td class="nowrap">${textbook.title}</td>
 						<td>${textbook.subtitle}</td>
-						<td>${textbook.author}</td>
+						<td><c:forEach var="author" items="${textbook.authors}"
+								varStatus="status">
+								<c:if test="${not empty author.firstName}">
+						${author.firstName}&nbsp;</c:if>
+								<c:if test="${not empty author.middleName}">${not empty author.middleName}&nbsp;</c:if>
+								<c:if test="${not empty author.lastName}">${author.lastName}&nbsp;</c:if>
+								<c:if test="${not empty author.suffix}">${author.suffix}</c:if>
+								<c:if test="${not status.last}">,&nbsp;</c:if>
+								<br />
+								<form action="gotoAddAuthor.do" method="GET">
+									<button class="btn btn-secondary btn-sm">Add Author</button>
+									<input type="hidden" name="textbookId" value="${textbook.id}" />
+								</form>
+							</c:forEach></td>
 						<td>${textbook.edition}</td>
 						<%-- TODO c:choose, when, otherwise to deal with null edition, year, length --%>
 						<td>${textbook.year}</td>
 						<td>${textbook.length}&nbsp;pages</td>
-						<td class="buttonsColumn"><form action="gotoUpdateRecord.do" method="GET">
+						<td class="buttonsColumn"><form action="gotoUpdateRecord.do"
+								method="GET">
 								<button type="submit" class="btn btn-secondary btn-sm">Update</button>
 								<input type="hidden" name="id" value="${textbook.id}" />
 							</form>
@@ -68,7 +82,7 @@
 								<button type="submit" class="btn btn-secondary btn-sm">Delete</button>
 								<input type="hidden" name="id" value="${textbook.id}" />
 							</form></td>
-						
+
 					</tr>
 				</table>
 			</c:otherwise>

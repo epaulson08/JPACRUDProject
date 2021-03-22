@@ -41,7 +41,7 @@
 						<th>Title:</th>
 						<th>Subtitle:</th>
 						<%-- TODO: BROKEN WHEN CHANGED `author` to `authors`: --%>
-						<th>Author</th>
+						<th>Author(s)</th>
 						<th>Edition</th>
 						<th>Year</th>
 						<th>Length</th>
@@ -52,11 +52,19 @@
 							<td>${textbook.id}</td>
 							<td class="nowrap">${textbook.title}</td>
 							<td>${textbook.subtitle}</td>
-							<td>${textbook.author}</td>
+							<td><c:forEach var="author" items="${textbook.authors}"
+									varStatus="status">
+									<c:if test="${not empty author.firstName}">
+						${author.firstName}&nbsp;</c:if>
+									<c:if test="${not empty author.middleName}">${not empty author.middleName}&nbsp;</c:if>
+									<c:if test="${not empty author.lastName}">${author.lastName}&nbsp;</c:if>
+									<c:if test="${not empty author.suffix}">${author.suffix}</c:if>
+									<c:if test="${not status.last}">,&nbsp;</c:if>
+								</c:forEach></td>
+
 							<td>${textbook.edition}</td>
-							<%-- TODO c:choose, when, otherwise to deal with null edition, year, length --%>
 							<td>${textbook.year}</td>
-							<td>${textbook.length}&nbsppages</td>
+							<td><c:if test="${not empty textbook.length}">${textbook.length}&nbsp;pages</c:if></td>
 							<td class="buttonsColumn"><form action="gotoUpdateRecord.do"
 									method="GET">
 									<input type="hidden" name="id" value="${textbook.id}" />
