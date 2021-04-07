@@ -43,6 +43,11 @@ public class LearningResourceController {
 		mv.setViewName("updateRecord");
 		return mv;
 	}
+	
+	@RequestMapping(path = "search.do", method = RequestMethod.GET)
+	public String search() {
+		return "searchRecordByKeyword";
+	}
 
 //////// CREATE
 

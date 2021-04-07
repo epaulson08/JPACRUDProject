@@ -1,35 +1,19 @@
 @charset "UTF-8";
 
 body {
-	line-height: 1.5;
+	padding-top: 67px;
 }
 
-h1 {
-	color: navy;
+.navbar-dark {
+  background-color: #1B5299 !important;
 }
-
-h2 {
-	color: navy;
-}
-
-h3 {
-	color: navy;
-}
-
-/* 
-.indexHeader {
-	color: black !important;
-}
-*/
 
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited,
 	.btn-primary:focus {
-	background-color: navy;
-	border-color: navy;
+	background-color: #1B5299;
+	border-color: #1B5299;
 	vertical-align: baseline;
-	/* margin-bottom: 5px;
-	margin-top: 5px; */
 }
 
 .btn-secondary, .btn-secondary:hover, .btn-secondary:active,
@@ -38,7 +22,7 @@ h3 {
 	margin-top: 5px;
 }
 
-a {
+.ceruleanLink {
 	color: #4B92DB;
 	text-decoration: underline;
 }
@@ -49,7 +33,7 @@ tr:nth-child(odd) {
 
 
 th {
-	color: navy;
+	color: #1B5299;
 	font-size: large;
 	text-align: left;
 	padding-right: 2rem;

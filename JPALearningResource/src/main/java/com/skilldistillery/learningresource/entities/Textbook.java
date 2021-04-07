@@ -31,8 +31,8 @@ public class Textbook {
 	private Integer year;
 
 	private Integer length;
-
-	// Constructors:
+	
+//////// ctors:
 	public Textbook() {
 		super();
 	}
@@ -57,8 +57,6 @@ public class Textbook {
 		this.length = length;
 	}
 
-
-
 //	Deprecated when `author` changed to `authors`:
 //	public Textbook(String author, String title, String subtitle, Integer edition, Integer year, Integer length) {
 //		super();
@@ -70,7 +68,7 @@ public class Textbook {
 //		this.length = length;
 //	}
 
-	// Getters and setters:
+//////// get/set:
 	public int getId() {
 		return id;
 	}
@@ -135,7 +133,8 @@ public class Textbook {
 	public void setAuthors(List<Author> authors) {
 		this.authors = authors;
 	}
-
+	
+//////// add/remove:
 	public void addAuthor(Author author) {
 		if (authors == null)
 			authors = new ArrayList<>();
@@ -152,7 +151,8 @@ public class Textbook {
 			author.removeTextbook(this);
 		}
 	}
-
+	
+//////// hash, equals, toString:
 	@Override
 	public int hashCode() {
 		final int prime = 31;

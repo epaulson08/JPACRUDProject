@@ -34,22 +34,9 @@ public class Author {
 	@JoinTable(name = "author_textbook", joinColumns = @JoinColumn(name = "author_id"), inverseJoinColumns = @JoinColumn(name = "textbook_id"))
 	private List<Textbook> textbooks;
 
-	// Methods:
-
+//////// ctors:
 	public Author() {
 		super();
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
 	}
 
 	public Author(String firstName, String middleName, String lastName, String suffix) {
@@ -69,6 +56,19 @@ public class Author {
 		this.textbooks = textbooks;
 	}
 
+//////// get/set:
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
@@ -80,15 +80,7 @@ public class Author {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-	public List<Textbook> getTextbooks() {
-		return textbooks;
-	}
-
-	public void setTextbooks(List<Textbook> textbooks) {
-		this.textbooks = textbooks;
-	}
-
+	
 	public String getMiddleName() {
 		return middleName;
 	}
@@ -104,7 +96,16 @@ public class Author {
 	public void setSuffix(String suffix) {
 		this.suffix = suffix;
 	}
-
+	
+	public List<Textbook> getTextbooks() {
+		return textbooks;
+	}
+	
+	public void setTextbooks(List<Textbook> textbooks) {
+		this.textbooks = textbooks;
+	}
+	
+// add/remove:
 	public void addTextbook(Textbook textbook) {
 		if (textbooks == null)
 			textbooks = new ArrayList<>();
@@ -122,14 +123,12 @@ public class Author {
 		}
 	}
 
+//////// hash, equals, toString:
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((textbooks == null) ? 0 : textbooks.hashCode());
 		return result;
 	}
 
@@ -142,30 +141,15 @@ public class Author {
 		if (getClass() != obj.getClass())
 			return false;
 		Author other = (Author) obj;
-		if (firstName == null) {
-			if (other.firstName != null)
-				return false;
-		} else if (!firstName.equals(other.firstName))
-			return false;
 		if (id != other.id)
-			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
-				return false;
-		} else if (!lastName.equals(other.lastName))
-			return false;
-		if (textbooks == null) {
-			if (other.textbooks != null)
-				return false;
-		} else if (!textbooks.equals(other.textbooks))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Author [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", textbooks=" + textbooks
-				+ "]";
+		return "Author [id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName
+				+ ", suffix=" + suffix + "]";
 	}
 
 }
