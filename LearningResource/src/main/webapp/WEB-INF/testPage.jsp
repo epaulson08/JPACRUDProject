@@ -13,18 +13,12 @@
 </head>
 
 <body>
-	<jsp:include page="nav.jsp" />
-	<div class="container">
+<jsp:include page="nav.jsp" />
+<div class="container">
+<h1>Test</h1>
 
-
-
-		<%-- CONTENT HERE --%>
-
-
-
-
-	</div>
-
-
+<c:forEach var="a" items="${authors}">${a}</c:forEach>
+</div>
 </body>
+
 </html>

@@ -13,26 +13,16 @@ import com.skilldistillery.learningresource.entities.Textbook;
 
 @Transactional
 @Service
-public class LearningResourceDAOImpl implements LearningResourceDAO {
+public class TextbookDAOImpl implements TextbookDAO {
 
 	@PersistenceContext
 	private EntityManager em;
 
 //////// CREATE
 	@Override
-	public Textbook createTextbook(Textbook textbook) {
-
+	public Textbook create(Textbook textbook) {
 		em.persist(textbook);
-
 		return textbook;
-	}
-
-	@Override
-	public Author createAuthor(Author author) {
-		
-		em.persist(author);
-		
-		return author;
 	}
 
 //////// READ
@@ -40,6 +30,7 @@ public class LearningResourceDAOImpl implements LearningResourceDAO {
 	public Textbook findById(int id) {
 		return em.find(Textbook.class, id);
 	}
+	
 
 	@Override
 	public List<Textbook> findAll() {
@@ -59,6 +50,14 @@ public class LearningResourceDAOImpl implements LearningResourceDAO {
 		return textbookList;
 	}
 
+	@Override
+	public List<Textbook> findByAuthor(Author author) {
+		List<Textbook> textbooks = null;
+		// TODO Auto-generated method stub
+		return textbooks;
+	}
+	
+
 //	Deprecated when changed `author` to `authors`:
 //	@Override
 //	public List<Textbook> findByAuthor(String author) {
@@ -73,7 +72,7 @@ public class LearningResourceDAOImpl implements LearningResourceDAO {
 //////// UPDATE
 	// TODO: update to reflect `author` vs. `authors`
 	@Override
-	public Textbook updateTextbook(int id, Textbook textbook) {
+	public Textbook update(int id, Textbook textbook) {
 		Textbook dbTextbook = em.find(Textbook.class, id);
 
 		if (textbook.getAuthors().size() != 0 && textbook.getAuthors() != null)

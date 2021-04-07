@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.skilldistillery.learningresource.data.LearningResourceDAO;
+import com.skilldistillery.learningresource.data.AuthorDAO;
+import com.skilldistillery.learningresource.data.TextbookDAO;
 import com.skilldistillery.learningresource.entities.Author;
 import com.skilldistillery.learningresource.entities.Textbook;
 
@@ -17,8 +18,18 @@ import com.skilldistillery.learningresource.entities.Textbook;
 public class LearningResourceController {
 
 	@Autowired
-	private LearningResourceDAO dao;
+	private TextbookDAO textbookDao;
 
+	@Autowired
+	private AuthorDAO authorDao;
+
+	
+	@RequestMapping(path = "testPage.do", method=RequestMethod.GET)
+	public String testPage() {
+		return "testPage";
+	}
+	
+	
 /////// NAVIGATION
 	@RequestMapping(path = { "/", "home.do" })
 	public String index(Model model) {
@@ -38,7 +49,7 @@ public class LearningResourceController {
 	@RequestMapping(path = "gotoUpdateRecord.do", method = RequestMethod.GET)
 	public ModelAndView gotoUpdateRecord(int id) {
 		ModelAndView mv = new ModelAndView();
-		Textbook textbook = dao.findById(id);
+		Textbook textbook = textbookDao.findById(id);
 		mv.addObject("textbook", textbook);
 		mv.setViewName("updateRecord");
 		return mv;
@@ -52,91 +63,40 @@ public class LearningResourceController {
 //////// CREATE
 
 	@RequestMapping(path = "recordCreated.do", method = RequestMethod.POST)
-	public ModelAndView recordCreated(String author1FirstName, String author1MiddleName, String author1LastName,
-			String author1Suffix, String author2FirstName, String author2MiddleName, String author2LastName,
-			String author2Suffix, String author3FirstName, String author3MiddleName, String author3LastName,
-			String author3Suffix, String author4FirstName, String author4MiddleName, String author4LastName,
-			String author4Suffix, String author5FirstName, String author5MiddleName, String author5LastName,
-			String author5Suffix, String title, String subtitle, String edition, String year, String length) {
-
+	public ModelAndView recordCreated(Author author, Textbook textbook) {
 		ModelAndView mv = new ModelAndView();
-		Author author1;
-		Author author2;
-		Author author3;
-		Author author4;
-		Author author5;
-		Integer checkedEdition = null, checkedYear = null, checkedLength = null;
-
-		try {
-			// Clean numeric data (possible NumberFormatException):
-			if (edition != "")
-				checkedEdition = Integer.parseInt(edition);
-			if (year != "")
-				checkedYear = Integer.parseInt(year);
-			if (length != "")
-				checkedLength = Integer.parseInt(length);
-
-			Textbook textbook = new Textbook(title, subtitle, checkedEdition, checkedYear, checkedLength);
-			textbook = dao.createTextbook(textbook);
-
-			if (author1FirstName != "" || author1MiddleName != "" || author1LastName != "" || author1Suffix != "") {
-				author1 = new Author(author1FirstName, author1MiddleName, author1LastName, author1Suffix);
-				dao.createAuthor(author1);
-				textbook.addAuthor(author1);
-				author1.addTextbook(textbook);
-			}
-			if (author2FirstName != "" || author2MiddleName != "" || author2LastName != "" || author2Suffix != "") {
-				author2 = new Author(author2FirstName, author2MiddleName, author2LastName, author2Suffix);
-				dao.createAuthor(author2);
-				textbook.addAuthor(author2);
-				author2.addTextbook(textbook);
-			}
-			if (author3FirstName != "" || author3MiddleName != "" || author3LastName != "" || author3Suffix != "") {
-				author3 = new Author(author3FirstName, author3MiddleName, author3LastName, author3Suffix);
-				dao.createAuthor(author3);
-				textbook.addAuthor(author3);
-				author3.addTextbook(textbook);
-			}
-			if (author4FirstName != "" || author4MiddleName != "" || author4LastName != "" || author4Suffix != "") {
-				author4 = new Author(author4FirstName, author4MiddleName, author4LastName, author4Suffix);
-				dao.createAuthor(author4);
-				textbook.addAuthor(author4);
-				author4.addTextbook(textbook);
-			}
-			if (author5FirstName != "" || author5MiddleName != "" || author5LastName != "" || author5Suffix != "") {
-				author5 = new Author(author5FirstName, author5MiddleName, author5LastName, author5Suffix);
-				dao.createAuthor(author5);
-				textbook.addAuthor(author5);
-				author5.addTextbook(textbook);
-			}
-
-			dao.updateTextbook(textbook.getId(), textbook);
-
-			mv.addObject("textbook", textbook);
-			mv.setViewName("recordCreated");
-			return mv;
-
-		} catch (Exception e) {
-			mv.setViewName("inputError");
-			e.printStackTrace();
-			return mv;
-		}
+		authorDao.create(author);
+		textbook.addAuthor(author);
+		textbookDao.create(textbook);
+		mv.setViewName("recordCreated");
+		return mv;
+		// FIXME: this will allow creation of duplicate authors
+		// TODO: allow creation of multiple authors
 	}
-
+			
 //////// READ
 	@RequestMapping(path = "seeAll.do", method = RequestMethod.GET)
-	public ModelAndView seeAll() {
+	public ModelAndView seeAllTextbooks() {
 		ModelAndView mv = new ModelAndView();
-		List<Textbook> allTextbooks = dao.findAll();
+		List<Textbook> allTextbooks = textbookDao.findAll();
 		mv.addObject("textbooks", allTextbooks);
 		mv.setViewName("viewRecords");
 		return mv;
 	}
 
+	@RequestMapping(path = "allAuthors.do", method = RequestMethod.GET)
+	public ModelAndView seeAllAuthors() {
+		ModelAndView mv = new ModelAndView();
+		List<Author> allAuthors = authorDao.findAll();
+		mv.addObject("authors", allAuthors);
+		mv.setViewName("testPage");
+		return mv;
+	}
+	
 	@RequestMapping(path = "searchRecordByID.do", method = RequestMethod.GET)
 	public ModelAndView searchRecordByID(int id) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("textbook", dao.findById(id));
+		mv.addObject("textbook", textbookDao.findById(id));
 		mv.setViewName("viewRecord");
 		return mv;
 	}
@@ -144,7 +104,7 @@ public class LearningResourceController {
 	@RequestMapping(path = "searchByTitle.do", method = RequestMethod.GET)
 	public ModelAndView searchByTitle(String title) {
 		ModelAndView mv = new ModelAndView();
-		List<Textbook> textbooks = dao.findByTitle(title);
+		List<Textbook> textbooks = textbookDao.findByTitle(title);
 		if (textbooks != null) {
 			mv.addObject("textbooks", textbooks);
 			mv.setViewName("viewRecords");
@@ -169,8 +129,11 @@ public class LearningResourceController {
 //	}
 
 //////// UPDATE
+	
+//	@RequestMapping(path = "recordUpdated.do", method = RequestMethod.POST)
+//	public ModelAndView recordUpdated(int id, Author author, Textbook textbook)
+	
 
-//  TODO: update to reflect change from `author` to `authors`
 //	@RequestMapping(path = "recordUpdated.do", method = RequestMethod.POST)
 //	public ModelAndView recordUpdated(int id, String author, String title, String subtitle, String edition, String year,
 //			String length) {
@@ -217,8 +180,8 @@ public class LearningResourceController {
 	@RequestMapping(path = "recordDeleted.do", method = RequestMethod.POST)
 	public ModelAndView recordDeleted(int id) {
 		ModelAndView mv = new ModelAndView();
-		Textbook textbook = dao.findById(id);
-		dao.delete(id);
+		Textbook textbook = textbookDao.findById(id);
+		textbookDao.delete(id);
 		mv.addObject(textbook);
 		mv.setViewName("recordDeleted");
 		return mv;
