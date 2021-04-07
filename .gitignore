@@ -8,3 +8,4 @@ bin
 .gradle
 *.war
 *.bak
+LearningResource/LearningResource/WEB-INF/lib
