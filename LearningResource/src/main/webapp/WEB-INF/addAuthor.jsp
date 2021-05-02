@@ -13,5 +13,6 @@
 	<jsp:include page="nav.jsp" />
 	<h2>Add Author</h2>
 	${textbookId}
+	<jsp:include page="foot.jsp" />
 </body>
 </html>

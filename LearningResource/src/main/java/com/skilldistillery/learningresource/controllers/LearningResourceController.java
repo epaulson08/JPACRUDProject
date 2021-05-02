@@ -23,15 +23,23 @@ public class LearningResourceController {
 	@Autowired
 	private AuthorDAO authorDao;
 
-	
+/////// TEST
 	@RequestMapping(path = "testPage.do", method=RequestMethod.GET)
 	public String testPage() {
 		return "testPage";
 	}
 	
-	
+	@RequestMapping(path = "allAuthors.do", method = RequestMethod.GET)
+	public ModelAndView seeAllAuthors() {
+		ModelAndView mv = new ModelAndView();
+		List<Author> allAuthors = authorDao.findAll();
+		mv.addObject("authors", allAuthors);
+		mv.setViewName("testPage");
+		return mv;
+	}
+		
 /////// NAVIGATION
-	@RequestMapping(path = { "/", "home.do" })
+	@RequestMapping(path = { "/", "home.do", "index.do" })
 	public String index(Model model) {
 		return "index";
 	}
@@ -71,7 +79,7 @@ public class LearningResourceController {
 		mv.setViewName("recordCreated");
 		return mv;
 		// FIXME: this will allow creation of duplicate authors
-		// TODO: allow creation of multiple authors
+		// TODO: allow creation of multiple authors on form
 	}
 			
 //////// READ
@@ -81,15 +89,6 @@ public class LearningResourceController {
 		List<Textbook> allTextbooks = textbookDao.findAll();
 		mv.addObject("textbooks", allTextbooks);
 		mv.setViewName("viewRecords");
-		return mv;
-	}
-
-	@RequestMapping(path = "allAuthors.do", method = RequestMethod.GET)
-	public ModelAndView seeAllAuthors() {
-		ModelAndView mv = new ModelAndView();
-		List<Author> allAuthors = authorDao.findAll();
-		mv.addObject("authors", allAuthors);
-		mv.setViewName("testPage");
 		return mv;
 	}
 	

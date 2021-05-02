@@ -19,6 +19,6 @@
 			<button type="submit" class="btn btn-secondary">Return Home</button>
 		</form>
 	</div>
-
+	<jsp:include page="foot.jsp" />
 </body>
 </html>

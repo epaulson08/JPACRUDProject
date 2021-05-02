@@ -10,7 +10,7 @@
 <title>Input Error</title>
 </head>
 <body>
-<jsp:include page="nav.jsp" />
+	<jsp:include page="nav.jsp" />
 	<div class="container">
 		<h2>There was a problem with your input.</h2>
 
@@ -18,5 +18,6 @@
 			<button type="submit" class="btn btn-secondary">Return Home</button>
 		</form>
 	</div>
+	<jsp:include page="foot.jsp" />
 </body>
 </html>

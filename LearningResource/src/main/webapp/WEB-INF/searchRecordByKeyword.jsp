@@ -17,5 +17,6 @@
 	<div class="container">
 		<h2>Search by Keyword</h2>
 	</div>
+	<jsp:include page="foot.jsp" />
 </body>
 </html>
